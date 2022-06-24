@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import my.project.appselecttest.Constants.API_KEY
 import my.project.appselecttest.R
 import my.project.appselecttest.data.api.Api
 
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         GlobalScope.launch(Dispatchers.IO) {
-            val rtt = Api.api.getMovies("otfGYS588CxyRQR1xWPdBHzNlL6U2OeR").body()
+            val rtt = Api.api.getMovies(apiKey = API_KEY).body()
             val ano = rtt
             val ona = 3
         }
