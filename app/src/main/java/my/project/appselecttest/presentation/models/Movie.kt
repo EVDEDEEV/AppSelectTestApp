@@ -1,4 +1,4 @@
-package my.project.appselecttest.domain.models
+package my.project.appselecttest.presentation.models
 
 data class Movie(
     val title: String,

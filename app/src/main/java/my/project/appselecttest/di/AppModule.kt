@@ -8,6 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import my.project.appselecttest.network.ApiInterface
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 
@@ -15,24 +16,21 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-
     private const val BASE_URL = "https://api.nytimes.com/svc/movies/v2/"
 
-    @ViewModelScoped
     @Singleton
     @Provides
-    fun getRetrofitInstance(retrofit: Retrofit): ApiInterface {
+    fun provideApiInterface(retrofit: Retrofit): ApiInterface {
         return retrofit.create(ApiInterface::class.java)
     }
 
 
     @Provides
     @Singleton
-    fun provideRetrofit() : ApiInterface =
+    fun provideRetrofit() : Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ApiInterface::class.java)
 
 }
