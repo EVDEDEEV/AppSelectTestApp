@@ -1,10 +1,11 @@
-package my.project.appselecttest.data.api
+package my.project.appselecttest.network
 
-import my.project.appselecttest.di.AppModule.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 //object Api {
+//
+//    private const val BASE_URL = "https://api.nytimes.com/svc/movies/v2/"
 //
 //    private val retrofit by lazy {
 //        Retrofit.Builder()
