@@ -1,5 +1,6 @@
 package my.project.appselecttest.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,20 +19,27 @@ class MainViewModel @Inject constructor(
     private val api: ApiInterface,
 ) : ViewModel() {
 
+    companion object {
+        const val API_KEY = "otfGYS588CxyRQR1xWPdBHzNlL6U2OeR"
+    }
+
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> = _movies
 
-    private suspend fun getMovies(): List<Movie> {
-        return api.getMovies(apiKey = "otfGYS588CxyRQR1xWPdBHzNlL6U2OeR").body().mapToUi()
-    }
-
-    init {
-            viewModelScope.launch(Dispatchers.IO) {
-                val getMovies = getMovies()
-                _movies.postValue(getMovies)
+    fun getMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val result =
+                    api.getMovies(apiKey = API_KEY).body().mapToUi()
+                _movies.postValue(result)
+            } catch (exception: Exception) {
             }
         }
     }
+    init {
+        getMovies()
+    }
+}
 
 
 

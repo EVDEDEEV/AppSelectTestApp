@@ -4,8 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/divider.xml" value="0.139" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/gradient.xml" value="0.139" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/text_view_background.xml" value="0.139" />
-        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/activity_main.xml" value="0.14583333333333334" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/activity_splash.xml" value="0.14583333333333334" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/movies_item.xml" value="0.253125" />
       </map>

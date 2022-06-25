@@ -1,7 +1,9 @@
 package my.project.appselecttest.presentation
 
 import android.annotation.SuppressLint
+import android.opengl.Visibility
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -25,13 +27,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mainViewModel.movies.observe(this) {
+            binding.textView.visibility = View.GONE
+            binding.button.visibility = View.GONE
             moviesAdapter.setMovies(it)
+        }
+
+        binding.button.setOnClickListener {
+            mainViewModel.getMovies()
         }
         setUpRv()
     }
 
 
-
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun setUpRv() {
         moviesAdapter = RecyclerViewAdapter()
 
@@ -45,18 +53,6 @@ class MainActivity : AppCompatActivity() {
             getDrawable(R.drawable.divider)?.let { itemDecoration.setDrawable(it) }
             addItemDecoration(itemDecoration)
             setHasFixedSize(true)
-
-
         }
-//
-//        mainViewModel.allMovies.observe(this) { listMovies ->
-//
-//            moviesAdapter.movies = listMovies
-//        }
-//
-//
-//    }
-
-
     }
 }
