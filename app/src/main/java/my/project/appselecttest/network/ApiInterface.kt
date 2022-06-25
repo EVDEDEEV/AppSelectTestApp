@@ -9,5 +9,8 @@ import retrofit2.http.Query
 interface ApiInterface {
 
     @GET("reviews/all.json")
-    suspend fun getMovies(@Query("api-key") apiKey: String): Response<MoviesResponse>
+    suspend fun getMovies(@Query("api-key") apiKey: String/*, @Query("offset") offset: Int*/): Response<MoviesResponse>
+
+
 }
+
