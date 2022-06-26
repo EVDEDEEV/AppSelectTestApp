@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.coroutineScope
 import my.project.appselecttest.R
 import my.project.appselecttest.databinding.ActivityMainBinding
 import my.project.appselecttest.presentation.adapters.MoviesAdapter
@@ -29,11 +28,9 @@ class MainActivity : AppCompatActivity() {
             binding.textView.visibility = View.GONE
             binding.button.visibility = View.GONE
             moviesAdapter.submitData(lifecycle, it)
+//            moviesAdapter.setMovies(it)
 //            loadingData()
         }
-
-        val x =
-
 
         binding.button.setOnClickListener {
             mainViewModel.getMovies()

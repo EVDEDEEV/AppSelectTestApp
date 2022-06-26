@@ -15,7 +15,7 @@ import my.project.appselecttest.presentation.models.MovieList
 class MoviesAdapter() :
     PagingDataAdapter<Movie, MoviesAdapter.MyViewHolder>(DiffUtilCallBack) {
 
-//    private var moviesList = emptyList<Movie>()
+    private var moviesList = emptyList<Movie>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,13 +29,13 @@ class MoviesAdapter() :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        holder.bind(moviesList[position])
-        getItem(position = 0)?.let { holder.bind(it) }
+        holder.bind(moviesList[position])
+//        getItem(position = 0)?.let { holder.bind(it) }
     }
 
-//    override fun getItemCount(): Int {
-//        return moviesList.size
-//    }
+    override fun getItemCount(): Int {
+        return moviesList.size
+    }
 
     inner class MyViewHolder(
         private val binding: MoviesItemBinding,
@@ -48,10 +48,10 @@ class MoviesAdapter() :
         }
     }
 
-//    fun setMovies(movies: PagingData<Movie>?) {
-//        moviesList = movies
-//        notifyDataSetChanged()
-//    }
+    fun setMovies(movies: List<Movie>) {
+        moviesList = movies
+        notifyDataSetChanged()
+    }
 
     object DiffUtilCallBack : DiffUtil.ItemCallback<Movie>() {
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
