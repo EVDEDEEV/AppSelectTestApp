@@ -1,8 +1,10 @@
 package my.project.appselecttest.data.models.mapper
 
+import dagger.Provides
 import my.project.appselecttest.data.models.MovieItem
 import my.project.appselecttest.presentation.models.Movie
 import my.project.appselecttest.presentation.models.MovieList
+
 
 class MovieListMapper {
 

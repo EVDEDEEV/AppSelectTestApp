@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.coroutineScope
 import my.project.appselecttest.R
 import my.project.appselecttest.databinding.ActivityMainBinding
-import my.project.appselecttest.presentation.adapters.RecyclerViewAdapter
+import my.project.appselecttest.presentation.adapters.MoviesAdapter
 
 
 @AndroidEntryPoint
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-    private lateinit var moviesAdapter: RecyclerViewAdapter
+    private lateinit var moviesAdapter: MoviesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +28,12 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.movies.observe(this) {
             binding.textView.visibility = View.GONE
             binding.button.visibility = View.GONE
-//            moviesAdapter.setMovies(it)
+            moviesAdapter.submitData(lifecycle, it)
 //            loadingData()
         }
+
+        val x =
+
 
         binding.button.setOnClickListener {
             mainViewModel.getMovies()
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     private fun setUpRecyclerView() {
-        moviesAdapter = RecyclerViewAdapter()
+        moviesAdapter = MoviesAdapter()
 
         binding.recyclerView.apply {
             adapter = moviesAdapter

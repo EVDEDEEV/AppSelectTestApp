@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import my.project.appselecttest.data.api.ApiInterface
+import my.project.appselecttest.data.models.mapper.MovieListMapper
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -31,4 +32,8 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+
+    @Provides
+    @Singleton
+    fun provideMapper() : MovieListMapper = MovieListMapper()
 }

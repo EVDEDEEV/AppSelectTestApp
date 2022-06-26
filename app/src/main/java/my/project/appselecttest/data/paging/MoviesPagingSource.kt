@@ -16,7 +16,6 @@ private const val INITIAL_LOAD_SIZE = 1
 
 class MoviesPagingSource(
     private val apiInterface: ApiInterface,
-    private val mapper: MovieListMapper,
 ) : PagingSource<Int, Movie>() {
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -29,23 +28,15 @@ class MoviesPagingSource(
         val offset = if (params.key != null)
             ((position - 1) * NETWORK_PAGE_SIZE) + 1 else INITIAL_LOAD_SIZE
         return try {
-            val jsonResponse =
-                apiInterface.getMovies(apiKey = "", offset = offset).body()?.movieItems
-//            val response = mapper.toMovieList(jsonResponse)
-            val response = mapper.toMovieList(jsonResponse)
-            val nextKey = if (response.isEmpty()) {
-                null
-            } else {
-                position + (params.loadSize) / NETWORK_PAGE_SIZE
-            }
+            val response =
+                apiInterface.getMovies(apiKey = "", offset = offset).body()?.mapToUi()
             LoadResult.Page(
-                data = response,
-                prevKey = null,
-                nextKey = nextKey
+                data = response.orEmpty(),
+                prevKey = if (position == 0) null else -20,
+                nextKey = position.plus(20)
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
-
     }
 
 

@@ -2,31 +2,20 @@ package my.project.appselecttest.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import my.project.appselecttest.databinding.MoviesItemBinding
-import my.project.appselecttest.data.models.MoviesResponse
 import my.project.appselecttest.presentation.models.Movie
+import my.project.appselecttest.presentation.models.MovieList
 
 
-class RecyclerViewAdapter : PagingDataAdapter<MoviesResponse ,RecyclerViewAdapter.MyViewHolder>(DiffUtilCallBack) {
+class MoviesAdapter() :
+    PagingDataAdapter<Movie, MoviesAdapter.MyViewHolder>(DiffUtilCallBack) {
 
-    object DiffUtilCallBack : DiffUtil.ItemCallback<MoviesResponse>() {
-        override fun areItemsTheSame(oldItem: MoviesResponse, newItem: MoviesResponse): Boolean {
-            return oldItem.hasMore == newItem.hasMore
-        }
-
-        override fun areContentsTheSame(
-            oldItem: MoviesResponse,
-            newItem: MoviesResponse
-        ): Boolean {
-            return oldItem == newItem
-        }
-    }
-
-    private var moviesList = emptyList<Movie>()
+//    private var moviesList = emptyList<Movie>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -40,14 +29,15 @@ class RecyclerViewAdapter : PagingDataAdapter<MoviesResponse ,RecyclerViewAdapte
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(moviesList[position])
+//        holder.bind(moviesList[position])
+        getItem(position = 0)?.let { holder.bind(it) }
     }
 
-    override fun getItemCount(): Int {
-        return moviesList.size
-    }
+//    override fun getItemCount(): Int {
+//        return moviesList.size
+//    }
 
-    class MyViewHolder(
+    inner class MyViewHolder(
         private val binding: MoviesItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -58,13 +48,23 @@ class RecyclerViewAdapter : PagingDataAdapter<MoviesResponse ,RecyclerViewAdapte
         }
     }
 
-    fun setMovies(movies: List<Movie>) {
-        moviesList = movies
-        notifyDataSetChanged()
+//    fun setMovies(movies: PagingData<Movie>?) {
+//        moviesList = movies
+//        notifyDataSetChanged()
+//    }
+
+    object DiffUtilCallBack : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem.title == newItem.title
+        }
+
+        override fun areContentsTheSame(
+            oldItem: Movie,
+            newItem: Movie,
+        ): Boolean {
+            return oldItem == newItem
+        }
     }
-
-
-
 
 
 }
