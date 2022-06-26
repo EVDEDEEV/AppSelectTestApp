@@ -20,8 +20,8 @@ class MainViewModel @Inject constructor(
     private val repository: MovieRepositoryImpl,
 ) : ViewModel() {
 
-    private val _movies = MutableLiveData<Movie>()
-    val movies: LiveData<Movie> = _movies
+    private val _movies = MutableLiveData<PagingData<Movie>>()
+    val movies: LiveData<PagingData<Movie>> = _movies
 //    private val _moviesList = MutableLiveData<PagingData<Movie>>()
 //    val movies: MutableLiveData<PagingData<Movie>> = _moviesList
 
