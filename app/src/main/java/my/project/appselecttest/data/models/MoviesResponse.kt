@@ -3,6 +3,7 @@ package my.project.appselecttest.data.models
 
 import com.google.gson.annotations.SerializedName
 import my.project.appselecttest.presentation.models.Movie
+import my.project.appselecttest.presentation.models.MovieList
 
 data class MoviesResponse(
 //    @SerializedName("has_more")

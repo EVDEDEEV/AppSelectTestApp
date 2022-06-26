@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.movies.observe(this) {
             binding.textView.visibility = View.GONE
             binding.button.visibility = View.GONE
-            moviesAdapter.submitData(lifecycle, it)
-//            moviesAdapter.setMovies(it)
+//            moviesAdapter.submitData(lifecycle, it)
+            moviesAdapter.setMovies(it)
 //            loadingData()
         }
 

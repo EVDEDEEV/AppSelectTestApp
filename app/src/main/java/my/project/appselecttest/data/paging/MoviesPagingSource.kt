@@ -2,13 +2,9 @@ package my.project.appselecttest.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import my.project.appselecttest.BuildConfig.ApiKey
 import my.project.appselecttest.data.api.ApiInterface
-import my.project.appselecttest.data.models.MoviesResponse
 import my.project.appselecttest.data.models.mapToUi
-import my.project.appselecttest.data.models.mapper.MovieListMapper
 import my.project.appselecttest.presentation.models.Movie
-import my.project.appselecttest.presentation.models.MovieList
 
 
 const val NETWORK_PAGE_SIZE = 20
@@ -30,6 +26,7 @@ class MoviesPagingSource(
         return try {
             val response =
                 apiInterface.getMovies(apiKey = "", offset = offset).body()?.mapToUi()
+//                apiInterface.getMovies(apiKey = "").mapToUi()
             LoadResult.Page(
                 data = response.orEmpty(),
                 prevKey = if (position == 0) null else -20,

@@ -20,16 +20,17 @@ class MainViewModel @Inject constructor(
     private val repository: MovieRepositoryImpl,
 ) : ViewModel() {
 
-
-    private val _moviesList = MutableLiveData<PagingData<Movie>>()
-    val movies: MutableLiveData<PagingData<Movie>> = _moviesList
+    private val _movies = MutableLiveData<Movie>()
+    val movies: LiveData<Movie> = _movies
+//    private val _moviesList = MutableLiveData<PagingData<Movie>>()
+//    val movies: MutableLiveData<PagingData<Movie>> = _moviesList
 
 
 //    : LiveData<PagingData<Movie>>
 fun getMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.getMoviesList()
-            _moviesList.value = response.value
+            _movies.postValue(response)
         }
 //        return response
     }

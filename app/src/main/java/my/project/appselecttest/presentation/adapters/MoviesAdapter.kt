@@ -12,8 +12,8 @@ import my.project.appselecttest.presentation.models.Movie
 import my.project.appselecttest.presentation.models.MovieList
 
 
-class MoviesAdapter() :
-    PagingDataAdapter<Movie, MoviesAdapter.MyViewHolder>(DiffUtilCallBack) {
+class MoviesAdapter :
+    RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
 
     private var moviesList = emptyList<Movie>()
 
@@ -53,18 +53,18 @@ class MoviesAdapter() :
         notifyDataSetChanged()
     }
 
-    object DiffUtilCallBack : DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-            return oldItem.title == newItem.title
-        }
-
-        override fun areContentsTheSame(
-            oldItem: Movie,
-            newItem: Movie,
-        ): Boolean {
-            return oldItem == newItem
-        }
-    }
+//    object DiffUtilCallBack : DiffUtil.ItemCallback<Movie>() {
+//        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+//            return oldItem.title == newItem.title
+//        }
+//
+//        override fun areContentsTheSame(
+//            oldItem: Movie,
+//            newItem: Movie,
+//        ): Boolean {
+//            return oldItem == newItem
+//        }
+//    }
 
 
 }
