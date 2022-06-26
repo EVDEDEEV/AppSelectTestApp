@@ -11,11 +11,25 @@ import my.project.appselecttest.databinding.MoviesItemBinding
 import my.project.appselecttest.presentation.models.Movie
 import my.project.appselecttest.presentation.models.MovieList
 
+//
+//class MoviesAdapter :
+//    RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
+class MoviesAdapter : PagingDataAdapter<Movie, MoviesAdapter.MyViewHolder>(DiffUtilCallBack) {
 
-class MoviesAdapter :
-    RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
+    object DiffUtilCallBack : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem.title == newItem.title
+        }
 
-    private var moviesList = emptyList<Movie>()
+        override fun areContentsTheSame(
+            oldItem: Movie,
+            newItem: Movie,
+        ): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+//    private var moviesList = emptyList<Movie>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,15 +43,22 @@ class MoviesAdapter :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(moviesList[position])
+//        holder.bind(moviesList[position])
+        val movie = getItem(position)?.let {
+            holder.bind(it)
+        }
+//        (holder as? MyViewHolder)?.bind(movie = getItem(position))
+    }
+//    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+////        holder.bind(moviesList[position])
 //        getItem(position = 0)?.let { holder.bind(it) }
-    }
+//    }
 
-    override fun getItemCount(): Int {
-        return moviesList.size
-    }
+//    override fun getItemCount(): Int {
+//        return moviesList.size
+//    }
 
-    inner class MyViewHolder(
+    class MyViewHolder(
         private val binding: MoviesItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -48,23 +69,14 @@ class MoviesAdapter :
         }
     }
 
-    fun setMovies(movies: List<Movie>) {
-        moviesList = movies
-        notifyDataSetChanged()
-    }
-
-//    object DiffUtilCallBack : DiffUtil.ItemCallback<Movie>() {
-//        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-//            return oldItem.title == newItem.title
-//        }
-//
-//        override fun areContentsTheSame(
-//            oldItem: Movie,
-//            newItem: Movie,
-//        ): Boolean {
-//            return oldItem == newItem
-//        }
+//    fun setMovies(movies: List<Movie>) {
+//        moviesList = movies
+//        notifyDataSetChanged()
 //    }
+
+    fun setMovies() {
+
+    }
 
 
 }

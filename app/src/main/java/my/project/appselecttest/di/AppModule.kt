@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import my.project.appselecttest.data.api.ApiInterface
 import my.project.appselecttest.data.models.mapper.MovieListMapper
+import my.project.appselecttest.presentation.adapters.MoviesAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -36,4 +37,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMapper() : MovieListMapper = MovieListMapper()
+
+    @Provides
+    @Singleton
+    fun provideAdapter() : MoviesAdapter = MoviesAdapter()
 }

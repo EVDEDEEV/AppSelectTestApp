@@ -4,52 +4,52 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import my.project.appselecttest.R
 import my.project.appselecttest.databinding.ActivityMainBinding
 import my.project.appselecttest.presentation.adapters.MoviesAdapter
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
 
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-    private lateinit var moviesAdapter: MoviesAdapter
+    private val moviesAdapter by lazy {
+        MoviesAdapter()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         mainViewModel.movies.observe(this) {
             binding.textView.visibility = View.GONE
             binding.button.visibility = View.GONE
-//            moviesAdapter.submitData(lifecycle, it)
-            moviesAdapter.setMovies(it)
+            moviesAdapter.submitData(lifecycle, it)
+//            moviesAdapter.setMovies(it)
+//            mainViewModel.getMovies()
 //            loadingData()
         }
 
         binding.button.setOnClickListener {
             mainViewModel.getMovies()
         }
-        setUpRecyclerView()
+
+
 
     }
 
-//    private fun loadingData() {
-//        lifecycleScope.launch {
-//            mainViewModel.listData.collect { pagingData ->
-//                moviesAdapter.setMovies(pagingData)
-//            }
-//        }
-//    }
-
     private fun setUpRecyclerView() {
-        moviesAdapter = MoviesAdapter()
-
+//        val moviesAdapter =  MoviesAdapter()
         binding.recyclerView.apply {
             adapter = moviesAdapter
             layoutManager = LinearLayoutManager(
@@ -62,4 +62,5 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
     }
+
 }

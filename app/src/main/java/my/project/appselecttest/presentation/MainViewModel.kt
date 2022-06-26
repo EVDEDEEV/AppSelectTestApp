@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import my.project.appselecttest.data.api.ApiInterface
 import my.project.appselecttest.data.repository.MovieRepositoryImpl
+import my.project.appselecttest.presentation.adapters.MoviesAdapter
 import my.project.appselecttest.presentation.models.Movie
 import javax.inject.Inject
 
@@ -18,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: MovieRepositoryImpl,
+    private val adapter: MoviesAdapter
 ) : ViewModel() {
 
     private val _movies = MutableLiveData<PagingData<Movie>>()
@@ -26,13 +28,18 @@ class MainViewModel @Inject constructor(
 //    val movies: MutableLiveData<PagingData<Movie>> = _moviesList
 
 
-//    : LiveData<PagingData<Movie>>
-fun getMovies() {
+    //    : LiveData<PagingData<Movie>>
+    fun getMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.getMoviesList()
-            _movies.postValue(response)
+            repository.getMoviesList().value
+//            val response = repository.getMoviesList().value
+//            _movies.postValue(response)
         }
 //        return response
+    }
+
+    init {
+        getMovies()
     }
 }
 
