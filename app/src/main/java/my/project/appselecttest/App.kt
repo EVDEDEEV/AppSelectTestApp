@@ -1,4 +1,4 @@
-package my.project.appselecttest.app
+package my.project.appselecttest
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

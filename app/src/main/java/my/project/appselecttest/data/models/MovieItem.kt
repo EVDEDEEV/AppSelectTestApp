@@ -1,4 +1,4 @@
-package my.project.appselecttest.network.models
+package my.project.appselecttest.data.models
 
 
 import com.google.gson.annotations.SerializedName

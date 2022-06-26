@@ -2,13 +2,29 @@ package my.project.appselecttest.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import my.project.appselecttest.databinding.MoviesItemBinding
+import my.project.appselecttest.data.models.MoviesResponse
 import my.project.appselecttest.presentation.models.Movie
 
 
-class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
+class RecyclerViewAdapter : PagingDataAdapter<MoviesResponse ,RecyclerViewAdapter.MyViewHolder>(DiffUtilCallBack) {
+
+    object DiffUtilCallBack : DiffUtil.ItemCallback<MoviesResponse>() {
+        override fun areItemsTheSame(oldItem: MoviesResponse, newItem: MoviesResponse): Boolean {
+            return oldItem.hasMore == newItem.hasMore
+        }
+
+        override fun areContentsTheSame(
+            oldItem: MoviesResponse,
+            newItem: MoviesResponse
+        ): Boolean {
+            return oldItem == newItem
+        }
+    }
 
     private var moviesList = emptyList<Movie>()
 
