@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import my.project.appselecttest.data.api.ApiInterface
+import my.project.appselecttest.data.models.MovieItem
 import my.project.appselecttest.data.repository.MovieRepositoryImpl
 import my.project.appselecttest.presentation.adapters.MoviesAdapter
 import my.project.appselecttest.presentation.models.Movie
@@ -22,33 +23,33 @@ class MainViewModel @Inject constructor(
     private val adapter: MoviesAdapter
 ) : ViewModel() {
 
-    private val _movies = MutableLiveData<PagingData<Movie>>()
-    val movies: LiveData<PagingData<Movie>> = _movies
+    private val _movies = MutableLiveData<PagingData<Movie>?>()
+    val movies: LiveData<PagingData<Movie>?> = _movies
 //    private val _moviesList = MutableLiveData<PagingData<Movie>>()
 //    val movies: MutableLiveData<PagingData<Movie>> = _moviesList
 
 
     //    : LiveData<PagingData<Movie>>
-    fun getMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getMoviesList().value
+//    fun getMovies() {
+//        viewModelScope.launch(Dispatchers.IO) {
 //            val response = repository.getMoviesList().value
+////            val response = repository.getMoviesList().value
 //            _movies.postValue(response)
-        }
-//        return response
-    }
+//        }
+////        return response
+//    }
 
-    init {
-        getMovies()
-    }
-}
-
-//suspend fun getMovies(): LiveData<PagingData<Movie>> {
-//        val response = repository.getMoviesList().cachedIn(viewModelScope)
-//        _moviesList.value = response.value
-//        return response
+//    init {
+//        getMovies()
 //    }
 //}
+
+suspend fun getMovies(): LiveData<PagingData<Movie>> {
+        val response = repository.getMoviesList().cachedIn(viewModelScope)
+        _movies.value = response.value
+        return response
+    }
+}
 
 //    suspend fun getMovies(): LiveData<PagingData<Movie>> {
 //        val response = repository.getMoviesList()
