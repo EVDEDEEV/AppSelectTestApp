@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import my.project.appselecttest.data.api.ApiInterface
+import my.project.appselecttest.data.api.MoviesApi
 import my.project.appselecttest.presentation.adapters.MoviesAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,14 +13,16 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+class AppModule {
 
-    private const val BASE_URL = "https://api.nytimes.com/svc/movies/v2/"
+    companion object {
+        private const val BASE_URL = "https://api.nytimes.com/svc/movies/v2/"
+    }
 
     @Singleton
     @Provides
-    fun provideApiInterface(retrofit: Retrofit): ApiInterface {
-        return retrofit.create(ApiInterface::class.java)
+    fun provideApiInterface(retrofit: Retrofit): MoviesApi {
+        return retrofit.create(MoviesApi::class.java)
     }
 
     @Provides

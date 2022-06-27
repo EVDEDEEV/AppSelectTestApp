@@ -4,19 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import my.project.appselecttest.R
 import my.project.appselecttest.databinding.ActivityMainBinding
 import my.project.appselecttest.presentation.adapters.MoviesAdapter
-import my.project.appselecttest.presentation.models.Movie
 
 
 @AndroidEntryPoint
@@ -35,10 +31,10 @@ class MainActivity : AppCompatActivity() {
         initRecyclerView()
         initViewModel()
 
-        binding.button.setOnClickListener {
+        binding.retryButton.setOnClickListener {
             initViewModel()
-            binding.textView.visibility = View.GONE
-            binding.button.visibility = View.GONE
+            binding.retryText.visibility = View.GONE
+            binding.retryButton.visibility = View.GONE
         }
     }
 
@@ -49,9 +45,12 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity,
                 LinearLayoutManager.VERTICAL, false
             )
+
             val itemDecoration =
                 DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
-            getDrawable(R.drawable.divider)?.let { itemDecoration.setDrawable(it) }
+            AppCompatResources.getDrawable(this@MainActivity, R.drawable.divider)?.let {
+                itemDecoration.setDrawable(it)
+            }
             addItemDecoration(itemDecoration)
             setHasFixedSize(true)
         }
@@ -61,11 +60,23 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             mainViewModel.getMovies().collectLatest {
                 moviesAdapter.submitData(it)
-                binding.textView.visibility = View.GONE
-                binding.button.visibility = View.GONE
+                binding.retryText.visibility = View.GONE
+                binding.retryButton.visibility = View.GONE
             }
         }
     }
+
+//    private fun checkConnection() {
+//        try {
+//            initViewModel()
+//        } catch (e: Exception){
+//            binding.button.setOnClickListener {
+//                initViewModel()
+//                binding.textView.visibility = View.GONE
+//                binding.button.visibility = View.GONE
+//            }
+//        }
+//    }
 }
 
 

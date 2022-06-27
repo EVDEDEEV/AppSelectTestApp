@@ -1,19 +1,19 @@
 package my.project.appselecttest.presentation
 
 import android.content.Intent
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.view.Window
-import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import my.project.appselecttest.R
-import my.project.appselecttest.databinding.ActivitySplashBinding
+
 
 class SplashActivity : AppCompatActivity() {
 
+    companion object {
+        const val SPLASH_DURATION = 2000L
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +24,13 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
-        }, 2000)
+        }, SPLASH_DURATION)
     }
-
 
     private fun makeFullScreen() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(
-            1,
+            WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         supportActionBar?.hide()

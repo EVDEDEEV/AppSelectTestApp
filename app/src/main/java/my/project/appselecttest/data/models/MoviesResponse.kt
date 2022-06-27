@@ -3,16 +3,13 @@ package my.project.appselecttest.data.models
 
 import com.google.gson.annotations.SerializedName
 import my.project.appselecttest.presentation.models.Movie
-import my.project.appselecttest.presentation.models.MovieList
 
 data class MoviesResponse(
-//    @SerializedName("has_more")
-//    val hasMore: Boolean?,
     @SerializedName("results")
-    val movieItems: List<MovieItem>?,
+    val movies: List<MovieModel>?,
 )
 
-fun MoviesResponse?.mapToUi(): List<Movie> = this?.movieItems?.map { movie ->
+fun MoviesResponse?.mapToUi(): List<Movie> = this?.movies?.map { movie ->
     Movie(
         title = movie.displayTitle.orEmpty(),
         image = movie.multimedia?.src.orEmpty(),

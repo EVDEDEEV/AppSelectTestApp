@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.146" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/divider.xml" value="0.139" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/gradient.xml" value="0.139" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/text_view_background.xml" value="0.139" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/activity_splash.xml" value="0.14583333333333334" />
-        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/movies_item.xml" value="0.253125" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/movies_item.xml" value="0.18352059925093633" />
       </map>
     </option>
   </component>

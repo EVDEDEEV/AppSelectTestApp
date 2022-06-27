@@ -3,11 +3,11 @@ package my.project.appselecttest.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieItem(
+data class MovieModel(
     @SerializedName("display_title")
     val displayTitle: String?,
     @SerializedName("multimedia")
-    val multimedia: Multimedia?,
+    val multimedia: MultimediaModel?,
     @SerializedName("summary_short")
-    val summaryShort: String?
+    val summaryShort: String?,
 )
