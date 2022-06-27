@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import my.project.appselecttest.R
 import my.project.appselecttest.databinding.ActivityMainBinding
@@ -30,33 +32,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-        mainViewModel.movies.observe(this) {
-            binding.textView.visibility = View.GONE
-            binding.button.visibility = View.GONE
-            initObservers()
-
-        }
-        setUpRecyclerView()
-
-
-//            moviesAdapter.setMovies(it)
-//            mainViewModel.getMovies()
-////            loadingData()
-//        }
+        initRecyclerView()
+        initViewModel()
 
         binding.button.setOnClickListener {
-//                    mainViewModel.getMovies()
-            initObservers()
+            initViewModel()
+            binding.textView.visibility = View.GONE
+            binding.button.visibility = View.GONE
         }
-
     }
 
-//    }
-
-    private fun setUpRecyclerView() {
-//        val moviesAdapter =  MoviesAdapter()
+    private fun initRecyclerView() {
         binding.recyclerView.apply {
             adapter = moviesAdapter
             layoutManager = LinearLayoutManager(
@@ -71,13 +57,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initObservers() {
-        lifecycleScope.launch {
-            mainViewModel.getMovies().observe(this@MainActivity) {
-                moviesAdapter.submitData(lifecycle, it)
-
+    private fun initViewModel() {
+        lifecycleScope.launchWhenCreated {
+            mainViewModel.getMovies().collectLatest {
+                moviesAdapter.submitData(it)
+                binding.textView.visibility = View.GONE
+                binding.button.visibility = View.GONE
             }
         }
     }
 }
+
 

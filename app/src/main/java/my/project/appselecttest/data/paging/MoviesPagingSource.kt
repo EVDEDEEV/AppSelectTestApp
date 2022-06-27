@@ -4,9 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import my.project.appselecttest.BuildConfig.ApiKey
 import my.project.appselecttest.data.api.ApiInterface
-import my.project.appselecttest.data.models.MovieItem
 import my.project.appselecttest.data.models.mapToUi
-import my.project.appselecttest.data.models.mapper.MovieListMapper
 import my.project.appselecttest.presentation.models.Movie
 
 

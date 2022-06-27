@@ -14,17 +14,17 @@ import my.project.appselecttest.data.models.MovieItem
 import my.project.appselecttest.data.repository.MovieRepositoryImpl
 import my.project.appselecttest.presentation.adapters.MoviesAdapter
 import my.project.appselecttest.presentation.models.Movie
+import java.util.concurrent.Flow
 import javax.inject.Inject
 
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: MovieRepositoryImpl,
-    private val adapter: MoviesAdapter
 ) : ViewModel() {
 
-    private val _movies = MutableLiveData<PagingData<Movie>?>()
-    val movies: LiveData<PagingData<Movie>?> = _movies
+//    private val _movies = MutableLiveData<PagingData<Movie>?>()
+//    val movies: LiveData<PagingData<Movie>?> = _movies
 //    private val _moviesList = MutableLiveData<PagingData<Movie>>()
 //    val movies: MutableLiveData<PagingData<Movie>> = _moviesList
 
@@ -44,19 +44,19 @@ class MainViewModel @Inject constructor(
 //    }
 //}
 
-suspend fun getMovies(): LiveData<PagingData<Movie>> {
-        val response = repository.getMoviesList().cachedIn(viewModelScope)
-        _movies.value = response.value
-        return response
-    }
-}
-
-//    suspend fun getMovies(): LiveData<PagingData<Movie>> {
-//        val response = repository.getMoviesList()
-//        _moviesList.value = response.value
+//suspend fun getMovies(): LiveData<PagingData<Movie>> {
+//        val response = repository.getMoviesList().cachedIn(viewModelScope)
+//        _movies.value = response.value
 //        return response
 //    }
 //}
+
+
+
+    suspend fun getMovies(): kotlinx.coroutines.flow.Flow<PagingData<Movie>> {
+        return repository.getMoviesList().cachedIn(viewModelScope)
+    }
+}
 
 
 //    init {

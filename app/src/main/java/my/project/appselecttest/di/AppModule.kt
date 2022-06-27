@@ -5,7 +5,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import my.project.appselecttest.data.api.ApiInterface
-import my.project.appselecttest.data.models.mapper.MovieListMapper
 import my.project.appselecttest.presentation.adapters.MoviesAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,21 +23,15 @@ object AppModule {
         return retrofit.create(ApiInterface::class.java)
     }
 
-
     @Provides
     @Singleton
-    fun provideRetrofit() : Retrofit =
+    fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-
     @Provides
     @Singleton
-    fun provideMapper() : MovieListMapper = MovieListMapper()
-
-    @Provides
-    @Singleton
-    fun provideAdapter() : MoviesAdapter = MoviesAdapter()
+    fun provideAdapter(): MoviesAdapter = MoviesAdapter()
 }
