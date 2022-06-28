@@ -4,13 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.146" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable-v24/ic_launcher_movie_foreground.xml" value="0.207" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/divider.xml" value="0.139" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/gradient.xml" value="0.139" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/ic_launcher_movie_background.xml" value="0.207" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/ic_logo_movie.xml" value="0.1735" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/ic_movie_icon.xml" value="0.184" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/ic_movie_icon2.xml" value="0.225" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/ic_two.xml" value="0.1735" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/drawable/text_view_background.xml" value="0.139" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/font/allerta_stencil.xml" value="0.15833333333333333" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/font/archivo_black.xml" value="0.15833333333333333" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/font/maitree_extralight.xml" value="0.15833333333333333" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/activity_splash.xml" value="0.264" />
-        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/movies_item.xml" value="0.18352059925093633" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/layout/movies_item.xml" value="0.1" />
+        <entry key="..\:/ASProjects2/AppSelectTest/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1735" />
       </map>
     </option>
   </component>

@@ -25,8 +25,6 @@ class MoviesAdapter : PagingDataAdapter<Movie, MoviesAdapter.MyViewHolder>(DiffU
         }
     }
 
-    private var moviesList = emptyList<Movie>()
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,

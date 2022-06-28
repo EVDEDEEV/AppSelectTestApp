@@ -11,6 +11,7 @@ plugins {
 
 def API_KEY = '"' + ApiKey + '"' ?: '"Api key not found"'
 def STRING = 'String'
+
 android {
     compileSdk 32
 

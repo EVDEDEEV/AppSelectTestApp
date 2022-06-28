@@ -1,7 +1,6 @@
 package my.project.appselecttest.presentation
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
@@ -30,12 +29,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initRecyclerView()
         initViewModel()
-
-        binding.retryButton.setOnClickListener {
-            initViewModel()
-            binding.retryText.visibility = View.GONE
-            binding.retryButton.visibility = View.GONE
-        }
     }
 
     private fun initRecyclerView() {
@@ -45,10 +38,10 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity,
                 LinearLayoutManager.VERTICAL, false
             )
-
             val itemDecoration =
                 DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
-            AppCompatResources.getDrawable(this@MainActivity, R.drawable.divider)?.let {
+            AppCompatResources.getDrawable(this@MainActivity,
+                R.drawable.recycler_divider)?.let {
                 itemDecoration.setDrawable(it)
             }
             addItemDecoration(itemDecoration)
@@ -60,23 +53,9 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             mainViewModel.getMovies().collectLatest {
                 moviesAdapter.submitData(it)
-                binding.retryText.visibility = View.GONE
-                binding.retryButton.visibility = View.GONE
             }
         }
     }
-
-//    private fun checkConnection() {
-//        try {
-//            initViewModel()
-//        } catch (e: Exception){
-//            binding.button.setOnClickListener {
-//                initViewModel()
-//                binding.textView.visibility = View.GONE
-//                binding.button.visibility = View.GONE
-//            }
-//        }
-//    }
 }
 
 
